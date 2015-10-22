@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">W23D3</string>
+    <string name="add_button">Add</string>
+    <string name="delete_button">Delete</string>
+    <string name="edit_text_view">Edit</string>
+    <string name="surname_text_view">Surname:</string>
+    <string name="update_button">Update</string>
+    <string name="edit_button">Edit</string>
+</resources>
