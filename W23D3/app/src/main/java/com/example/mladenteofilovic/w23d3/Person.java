@@ -1,5 +1,6 @@
 package com.example.mladenteofilovic.w23d3;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
@@ -7,7 +8,7 @@ import java.util.UUID;
 /**
  * Created by mladen.teofilovic on 21/10/15.
  */
-public class Person {
+public class Person implements Serializable{
 
     public String name;
     public String surname;

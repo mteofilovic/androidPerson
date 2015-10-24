@@ -1,5 +1,6 @@
 package com.example.mladenteofilovic.w23d3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ public class EditPerson extends AppCompatActivity {
     private Button updatePersonButton;
     private EditText nameEditText;
     private EditText surnameEditText;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,17 +23,19 @@ public class EditPerson extends AppCompatActivity {
         nameEditText = (EditText) findViewById(R.id.name_edit_text_editView);
         surnameEditText = (EditText) findViewById(R.id.surname_edit_view);
 
-        String name = getIntent().getExtras().get(MainActivity.EXTRA_DATA_ID).toString();
-        String surname = getIntent().getExtras().getString(MainActivity.EXTRA_SURNAME_ID);
+        Person person = (Person) getIntent().getExtras().getSerializable(MainActivity.EXTRA_PERSON);
 
-        nameEditText.setText(name);
-        surnameEditText.setText(surname);
+        nameEditText.setText(person.getName());
+        surnameEditText.setText(person.getSurname());
 
 
         updatePersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Persons.getPersons().getPerson(position).setName(nameEditText.getText().toString());
+                Persons.getPersons().getPerson(position).setName(surnameEditText.getText().toString());
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

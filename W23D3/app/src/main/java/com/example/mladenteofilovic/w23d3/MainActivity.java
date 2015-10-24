@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton sortByName;
     private RadioButton sortByLastName;
 
-    public static final String EXTRA_DATA_ID = "name_extra";
-    public static final String EXTRA_SURNAME_ID = "surname_extra";
+    public static final String EXTRA_PERSON = "person_extra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,8 +122,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, EditPerson.class);
-                    intent.putExtra(EXTRA_DATA_ID, nameTextView.getText().toString());
-                    intent.putExtra(EXTRA_SURNAME_ID, surnameTextView.getText().toString());
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(EXTRA_PERSON, person);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });
