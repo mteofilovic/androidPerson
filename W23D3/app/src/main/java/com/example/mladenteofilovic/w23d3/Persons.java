@@ -1,6 +1,8 @@
 package com.example.mladenteofilovic.w23d3;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -9,7 +11,8 @@ import java.util.UUID;
  * Created by mladen.teofilovic on 21/10/15.
  */
 public class Persons {
-    private List<Person> persons;
+    private static List<Person> persons;
+    private static Persons mPersons;
 
     public Persons() {
         persons = new ArrayList<>();
@@ -36,4 +39,16 @@ public class Persons {
             }
         }
     }
+
+    public List<Person> getPersonsList() {
+        return persons;
+    }
+
+    public static Persons getPersons(){
+        if(mPersons == null){
+            mPersons = new Persons();
+        }
+        return mPersons;
+    }
+
 }

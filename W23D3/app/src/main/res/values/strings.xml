@@ -6,4 +6,6 @@
     <string name="surname_text_view">Surname:</string>
     <string name="update_button">Update</string>
     <string name="edit_button">Edit</string>
+    <string name="sort_by_name">Sort by Name</string>
+    <string name="sort_by_lastname">Sort by Last Name</string>
 </resources>

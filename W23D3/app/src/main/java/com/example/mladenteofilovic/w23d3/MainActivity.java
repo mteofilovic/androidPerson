@@ -9,8 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
+
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recView;
     private Adapt adapter;
     private Button mEditButton;
+    private RadioButton sortByName;
+    private RadioButton sortByLastName;
 
     public static final String EXTRA_DATA_ID = "name_extra";
     public static final String EXTRA_SURNAME_ID = "surname_extra";
@@ -34,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         mNameEditText = (EditText) findViewById(R.id.editText_name);
         mSurnameEditText = (EditText) findViewById(R.id.editText2_surname);
         recView = (RecyclerView) findViewById(R.id.recycler);
+        sortByName = (RadioButton) findViewById(R.id.radioButton);
+        sortByLastName  =(RadioButton) findViewById(R.id.radioButton2);
+
 
         adapter = new Adapt(persons);
         recView.setAdapter(adapter);
@@ -48,6 +58,38 @@ public class MainActivity extends AppCompatActivity {
                 persons.addPerson(name, surname);
                 adapter.notifyDataSetChanged();
 
+            }
+        });
+
+        sortByName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    sortByName.setChecked(false);
+                    Collections.sort(Persons.getPersons().getPersonsList(), new Comparator<Person>() {
+                        @Override
+                        public int compare(Person lhs, Person rhs) {
+                            return lhs.getName().compareTo(rhs.getName());
+                        }
+                    });
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+        sortByLastName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    sortByLastName.setChecked(false);
+                    Collections.sort(Persons.getPersons().getPersonsList(), new Comparator<Person>() {
+                        @Override
+                        public int compare(Person lhs, Person rhs) {
+                            return lhs.getSurname().compareTo(rhs.getSurname());
+                        }
+                    });
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
 
